@@ -1,0 +1,48 @@
+version: "3.5"
+services:
+  pcts_users-db:
+    image: postgres:13
+    container_name: pcts_users-db
+    volumes:
+    - pcts_users-postgres_data:/var/lib/postgresql/data
+    env_file: dev-env
+    ports:
+        - 5432:5432
+    networks:
+      - pcts-network
+    healthcheck:
+        test: ["CMD", "pg_isready", "-U", "postgres"]
+        interval: 5s
+        retries: 5
+    restart: unless-stopped
+
+  pcts_users:
+    container_name: pcts-users
+    # restart: unless-stopped
+    build: .
+    image: pcts-users
+    env_file: dev-env
+    command: ["sh", "scripts/start_dev.sh"]
+    ports:
+      - 8001:8001
+    networks:
+      - pcts-network
+    volumes:
+      - .:/app
+      - pip-cache:/usr/local/lib/python3.8/site-packages
+    depends_on:
+      pcts_users-db:
+        condition: service_healthy
+    volumes:
+        - .:/code
+
+volumes:
+  pcts_users-postgres_data:
+    name: pcts_users-postgres_data
+  pip-cache:
+    name: pcts-users-pip-cache
+
+networks:
+  pcts-network:
+    name: pcts-network
+    driver: bridge
