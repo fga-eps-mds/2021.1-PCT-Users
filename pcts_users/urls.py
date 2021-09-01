@@ -18,10 +18,10 @@ from django.urls import path
 
 from django.urls import include, path
 from rest_framework import routers
-from pcts_users.documents import views
+from pcts_users.searches import views
 
 router = routers.DefaultRouter()
-router.register(r'documents', views.DocumentViewSet)
+router.register(r'searches', views.SavedSearchViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
