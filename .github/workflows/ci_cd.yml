@@ -9,7 +9,7 @@ on:
       - "*"
 
 jobs:
-  build:
+  integration:
     runs-on: ubuntu-latest
     env:
       GIT_SHA: ${{ github.sha }}
@@ -55,7 +55,7 @@ jobs:
             "python manage.py makemigrations && python manage.py migrate && coverage run --source='.' manage.py test && coverage xml"
 
   sonarAnalysis:
-    needs: build
+    needs: integration
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
 
@@ -68,7 +68,7 @@ jobs:
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: integration
     runs-on: ubuntu-latest
 
     steps:
