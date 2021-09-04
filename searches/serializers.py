@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from pcts_users.searches.models import SavedSearch
+from searches.models import SavedSearch
 
 
 class SavedSearchSerializer(serializers.HyperlinkedModelSerializer):

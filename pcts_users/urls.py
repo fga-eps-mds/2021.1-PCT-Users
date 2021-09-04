@@ -18,7 +18,7 @@ from django.urls import path
 
 from django.urls import include, path
 from rest_framework import routers
-from pcts_users.searches import views
+from searches import views
 
 router = routers.DefaultRouter()
 router.register(r'searches', views.SavedSearchViewSet)
