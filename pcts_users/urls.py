@@ -18,13 +18,14 @@ from django.urls import path
 
 from django.urls import include, path
 from rest_framework import routers
-from searches import views
+from searches.views import SavedSearchViewSet
 
 router = routers.DefaultRouter()
-router.register(r'searches', views.SavedSearchViewSet)
+router.register(r'searches', SavedSearchViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/users/', include("users.urls"))
 ]
