@@ -2,12 +2,12 @@ from rest_framework import serializers
 from users.models import User
 
 
-class DetailListSerializer(serializers.ModelSerializer):
+class ListRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['name', 'email']
+        fields = ['id', 'name', 'email', 'roleId']
 
-class CreateEditSerializer(serializers.ModelSerializer):
+class CreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['name', 'email', 'password']
+        fields = ['id', 'name', 'email', 'password', 'roleId']

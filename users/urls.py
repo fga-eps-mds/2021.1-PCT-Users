@@ -1,10 +1,10 @@
 from django.urls import path
-from users import views
+from .views import UserCreate, UserList, UserRetrieve, UserUpdate, UserDelete
 
 urlpatterns = [
-    path("", views.list),
-    path("",  views.create),
-    path("<int:pk>", views.edit),
-    path("<int:pk>", views.detail),
-    path("<int:pk>", views.delete)
+    path("",  UserList.as_view()),
+    path("create/", UserCreate.as_view()),
+    path("detail/<int:pk>/", UserRetrieve.as_view()),
+    path("update/<int:pk>/", UserUpdate.as_view()),
+    path("delete/<int:pk>/", UserDelete.as_view())
 ]
