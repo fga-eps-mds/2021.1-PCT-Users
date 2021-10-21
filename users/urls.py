@@ -1,5 +1,9 @@
 from django.urls import path
-from .views import UserCreate, UserList, UserRetrieve, UserUpdate, UserDelete
+from rest_framework import routers
+from .views import UserCreate, UserList, UserRetrieve, UserUpdate, UserDelete, UserViewSet
+
+router = routers.DefaultRouter()
+router.register('cadastrar_usuario', UserViewSet, basename='Cadastrar Usuário')
 
 urlpatterns = [
     path("",  UserList.as_view()),

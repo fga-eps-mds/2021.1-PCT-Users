@@ -63,7 +63,7 @@ ROOT_URLCONF = 'pcts_users.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+       'DIRS': [os.path.join(BASE_DIR, 'pcts_users/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,6 +113,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#
+#AUTENTICAÇÃO
+#
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+LOGIN_URL = '/accounts/login/'
+
+LOGOUT_URL = '/accounts/logout/'
+
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -136,3 +148,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#PARA FAZER A REDEFINIÇÃO DE SENHA PRECISA DESTE MODULO
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

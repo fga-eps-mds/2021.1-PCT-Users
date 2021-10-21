@@ -19,13 +19,16 @@ from django.urls import path
 from django.urls import include, path
 from rest_framework import routers
 from searches.views import SavedSearchViewSet
+from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'searches', SavedSearchViewSet)
+router.register('cadastro', UserViewSet, basename='Cadastro')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('users/', include("users.urls"))
+    path('users/', include("users.urls")),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
