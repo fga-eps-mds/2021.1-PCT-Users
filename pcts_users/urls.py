@@ -18,10 +18,8 @@ from django.urls import path
 
 from django.urls import include, path
 from rest_framework import routers
-from searches import views
 
 router = routers.DefaultRouter()
-router.register(r'searches', views.SavedSearchViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

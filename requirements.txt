@@ -5,3 +5,4 @@ django-environ==0.4.*
 psycopg2-binary>=2.8
 pycodestyle
 coverage
+djangorestframework-simplejwt==5.0.0

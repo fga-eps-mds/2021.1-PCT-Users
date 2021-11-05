@@ -18,7 +18,7 @@ services:
 
   pcts-users:
     container_name: pcts-users
-    # restart: unless-stopped
+    restart: unless-stopped
     build: .
     image: pcts-users
     env_file: dev-env
