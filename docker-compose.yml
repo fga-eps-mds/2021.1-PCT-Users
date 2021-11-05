@@ -33,8 +33,6 @@ services:
     depends_on:
       pcts-users-db:
         condition: service_healthy
-    volumes:
-        - .:/code
 
 volumes:
   pcts-users-postgres-data:
